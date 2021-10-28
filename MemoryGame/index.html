@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Memory Game</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <audio id="startAudio" controls loop>
+      <source src="./assets/Komiku_-_12_-_Bicycle.mp3" type="audio/ogg" />
+      Your browser does not support the audio element.
+    </audio>
+    <audio id="correctAudio" controls>
+      <source src="./assets/correct.wav" type="audio/ogg" />
+    </audio>
+
+    <audio id="flipAudio" controls>
+      <source src="./assets/card-flip.wav" type="audio/ogg" />
+    </audio>
+
+    <audio id="gamewinAudio" controls>
+      <source src="./assets/game-complete.wav" type="audio/ogg" />
+    </audio>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              MEMORY CARDS GAME!!
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <label for="exampleFormControlInput1"
+              >Please enter your name:</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="exampleFormControlInput1"
+              placeholder="Player Name"
+            />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              onclick="getNamne()"
+              data-bs-dismiss="modal"
+              class="btn btn-primary"
+            >
+              PLAY NOW !!!
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrapper">
+      <span id="timer">00:00:00</span>
+    </div>
+
+    <section class="memory-game">
+      <div class="memory-card" data-fruit="apple">
+        <img class="front-face" src="assets/apple.jpg" alt="apple" />
+        <img class="back-face" src="assets/qustion.png" alt="Qustion" />
+      </div>
+      <div class="memory-card" data-fruit="apple">
+        <img class="front-face" src="assets/apple.jpg" alt="apple" />
+        <img class="back-face" src="assets/qustion.png" alt="Qustion" />
+      </div>
+
+      <div class="memory-card" data-fruit="carrot">
+        <img class="front-face" src="assets/carrot.jpg" alt="carrot" />
+        <img class="back-face" src="assets/qustion.png" alt="Qustion" />
+      </div>
+      <div class="memory-card" data-fruit="carrot">
+        <img class="front-face" src="assets/carrot.jpg" alt="carrot" />
+        <img class="back-face" src="assets/qustion.png" alt="Qustion" />
+      </div>
+
+      <div class="memory-card" data-fruit="coconut">
+        <img class="front-face" src="assets/coconut.jpg" alt="coconut" />
+        <img class="back-face" src="assets/qustion.png" alt="Qustion" />
+      </div>
+      <div class="memory-card" data-fruit="coconut">
+        <img class="front-face" src="assets/coconut.jpg" alt="coconut" />
+        <img class="back-face" src="assets/qustion.png" alt="Qustion" />
+      </div>
+
+      <div class="memory-card" data-fruit="orange">
+        <img class="front-face" src="assets/orange.jpg" alt="orange" />
+        <img class="back-face" src="assets/qustion.png" alt="Qustion" />
+      </div>
+      <div class="memory-card" data-fruit="orange">
+        <img class="front-face" src="assets/orange.jpg" alt="orange" />
+        <img class="back-face" src="assets/qustion.png" alt="Qustion" />
+      </div>
+
+      <div class="memory-card" data-fruit="pinaple">
+        <img class="front-face" src="assets/pinaple.jpg" alt="pinaple" />
+        <img class="back-face" src="assets/qustion.png" alt="Qustion" />
+      </div>
+      <div class="memory-card" data-fruit="pinaple">
+        <img class="front-face" src="assets/pinaple.jpg" alt="pinaple" />
+        <img class="back-face" src="assets/qustion.png" alt="Qustion" />
+      </div>
+
+      <div class="memory-card" data-fruit="tarbooj">
+        <img class="front-face" src="assets/tarbooj.jpg" alt="tarbooj" />
+        <img class="back-face" src="assets/qustion.png" alt="JS Qustion" />
+      </div>
+      <div class="memory-card" data-fruit="tarbooj">
+        <img class="front-face" src="assets/tarbooj.jpg" alt="tarbooj" />
+        <img class="back-face" src="assets/qustion.png" alt="Qustion" />
+      </div>
+    </section>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+      integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+      integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#exampleModal").modal("show");
+      });
+    </script>
+  </body>
+</html>
